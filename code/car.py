@@ -35,3 +35,13 @@ class Car(object):
             return ret
 
         return None
+
+
+    def output(self):
+        print('{} {}'.format(
+            len(self.rides),
+            ' '.join(
+                str(ride.ride_id) for ride self.rides
+            )
+        )
+

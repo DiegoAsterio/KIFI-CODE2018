@@ -5,12 +5,18 @@ def algorithm(problem):
     cars = [ Car() for _ in range(problem.fleet) ]
     rides = problem.rides
     lookahead = LOOKAHEAD_RIDES * problem.fleet
+    bonus = problem.bonus
 
     for step in range(steps):
         for car in cars:
             if car.is_free():
-                ride = car.choose_ride(rides[:lookahead])
-                rides.remove(ride)
+                ride = car.choose_ride(
+                    rides[:lookahead],
+                    bonus
+                )
+
+                if ride is not None:
+                    rides.remove(ride)
             
             car.tick()
 
