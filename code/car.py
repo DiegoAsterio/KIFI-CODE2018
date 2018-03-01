@@ -4,10 +4,10 @@ class Car(object):
     def __init__(self):
         self.rides = []
         self.target = Position(row=0, col=0)
-        self.remainingSteps = 0
+        self.remaining_steps = 0
 
     def is_free(self):
-        return not self.remainingSteps
+        return not self.remaining_steps
 
     def get_score(self, ride, current_time, bonus, sim_params):
         distance = dist(ride.start, self.target)
@@ -21,15 +21,17 @@ class Car(object):
         return sim_params.compute_score(distance, waiting_time, duration, bonus)
 
     def tick(self):
-        if self.remainingSteps:
-            self.remainingSteps -= 1
+        if self.remaining_steps:
+            self.remaining_steps -= 1
 
     def choose_ride(self,step,rides):
-        max = -1
-        ret = None
-        for ride in rides:
-            aux_score = get_score(ride)
-            if max < aux_score
-                max = aux_score
-                ret = ride
-        return ret
+        ret = max(rides, key=lambda r: r.get_score(ride,step) )
+        if (ret.get_score() > 0):
+            self.rides.append(ret)
+            waiting_time = max(0,ret.start - (step + dist(self.target,ret.start) ))
+            self.remaining_steps = dist(self.target,ret.start) + waiting_time + dist(ret.start, ret.end)
+            self.target = ret.finish
+
+            return ret
+
+        return None
