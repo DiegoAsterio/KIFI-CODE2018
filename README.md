@@ -1,2 +1,3 @@
 # KIFI-CODE2018
-Hash code 2018
+This repo will be holding our Google Hash code project.
+o
