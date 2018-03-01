@@ -1,5 +1,4 @@
 from collections import namedtuple
-import math
 
 Problem = namedtuple('Map', ['rows', 'cols', 'fleet', 'bonus', 'steps', 'rides'])
 Position = namedtuple('Position', ['row', 'col'])
@@ -14,7 +13,7 @@ class SimulationParameters(object):
         self.d = d
 
     def compute_score(self, distance, waiting_time, duration, bonus):
-        return math.exp(self.a * distance + self.b * waiting_time
+        return (self.a * distance + self.b * waiting_time
                         + self.c * duration + self.d * bonus)
 
 
