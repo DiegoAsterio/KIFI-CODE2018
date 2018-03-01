@@ -1,8 +1,7 @@
 from car import Car
+from random import randint
 
 LOOKAHEAD_RIDES = 3
-
-
 
 def algorithm(problem, params):
     steps = problem.steps
@@ -13,6 +12,7 @@ def algorithm(problem, params):
 
     for step in range(steps):
         print(step)
+        import pdb; pdb.set_trace()
         for car in cars:
             if car.is_free():
                 ride = car.choose_ride(

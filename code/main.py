@@ -1,12 +1,13 @@
 from data import Problem, Position, Ride, SimulationParameters
 from algorithm import algorithm
 
-R, C, F, N, B, T = [ int(x) for x in input().split() ]
+content = open('../datasets/a_example.in')
+R, C, F, N, B, T = [ int(x) for x in content.readline().split() ]
 
 rides = []
 
 for i in range(N):
-    a, b, x, y, s, f = [ int(x) for x in input().split() ]
+    a, b, x, y, s, f = [ int(x) for x in content.readline().split() ]
     ride = Ride(
         ride_id=i,
         t_start=s,
