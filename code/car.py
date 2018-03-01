@@ -25,21 +25,25 @@ class Car(object):
         if self.remaining_steps:
             self.remaining_steps -= 1
 
-    def choose_ride(self,step,rides,bonus,sim_params):
-        f = lambda r: self.get_score(r, step, bonus, sim_params)
-        ret = max(rides, key=f) 
-        if self.get_score(ret,step,bonus,sim_params) != -float('inf'):
-            self.rides.append(ret)
-            
+    def choose_ride(self, step, rides, bonus, sim_params):
+        def ride_score(ride):
+            return self.get_score(ride, step, bonus, sim_params)
+
+        candidate = max(rides, key=ride_score)
+
+        if self.get_score(candidate, step, bonus, sim_params) > -float('inf'):
+            self.rides.append(candidate)
+
             waiting_time = max(
                 0,
-                ret.t_start - (step + dist(self.target,ret.start))
+                candidate.t_start - (step + dist(self.target, candidate.start))
             )
 
-            self.remaining_steps = dist(self.target,ret.start) + waiting_time + dist(ret.start, ret.finish)
-            self.target = ret.finish
-
-            return ret
+            self.remaining_steps = (dist(self.target, candidate.start)
+                                    + waiting_time
+                                    + dist(candidate.start, candidate.finish))
+            self.target = candidate.finish
+            return candidate
 
         return None
 
@@ -51,4 +55,3 @@ class Car(object):
                 str(ride.ride_id) for ride in self.rides
             )
         ))
-
