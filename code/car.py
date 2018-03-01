@@ -22,3 +22,6 @@ class Car(object):
                 max = aux_score
                 ret = ride
         return ret
+
+    def output(self):
+        print('{} {}'.format(len(self.rides), ' '.join(str(ride.ride_id) for ride self.rides))
