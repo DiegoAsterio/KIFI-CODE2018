@@ -8,14 +8,14 @@ class Car(object):
         return not self.remainingSteps
 
     def choose_ride(self,step,rides):
-        scores = [getScores(ride) :  ride in rides]
         max = -1
-        pos = 0
-        for i in range(scores.size() ):
-            if max < scores[i]:
-                max = scores[i]
-                pos = i
-        return rides[pos]
+        ret = None
+        for ride in rides:
+            aux_score = get_score(ride)
+            if max < aux_score
+                max = aux_score
+                ret = ride
+        return ret
             
         
                   
