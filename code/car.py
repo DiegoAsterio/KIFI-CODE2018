@@ -28,7 +28,7 @@ class Car(object):
     def choose_ride(self,step,rides,bonus,sim_params):
         f = lambda r: self.get_score(r, step, bonus, sim_params)
         ret = max(rides, key=f) 
-        if self.get_score(ret,step,bonus,sim_params) > 0:
+        if self.get_score(ret,step,bonus,sim_params) != -float('inf'):
             self.rides.append(ret)
             
             waiting_time = max(
