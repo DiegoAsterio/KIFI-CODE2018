@@ -1,8 +1,5 @@
-from data import Problem, Position, Ride
-
-Problem = namedtuple('Map', ['rows', 'cols', 'fleet', 'bonus', 'steps', 'rides'])
-Position = namedtuple('Position', ['row', 'col'])
-Ride = namedtuple('Ride', ['ride_id', 'start', 'finish', 't_start', 't_finish'])
+from data import Problem, Position, Ride, SimulationParameters
+from algorithm import algorithm
 
 R, C, F, N, B, T = [ int(x) for x in input().split() ]
 
@@ -23,5 +20,6 @@ for i in range(N):
 rides.sort(key=lambda ride: ride.t_start)
 
 problem = Problem(rows=R, cols=C, fleet=F, bonus=B, steps=T, rides=rides)
+sim_parameters = SimulationParameters(-1, -1, 1, 10)
 
-print(problem)
+algorithm(problem, sim_parameters)

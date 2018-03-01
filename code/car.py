@@ -1,4 +1,5 @@
-from data import Position
+from data import Position, dist
+
 
 class Car(object):
     def __init__(self):
@@ -24,14 +25,30 @@ class Car(object):
         if self.remaining_steps:
             self.remaining_steps -= 1
 
-    def choose_ride(self,step,rides):
-        ret = max(rides, key=lambda r: r.get_score(ride,step) )
-        if (ret.get_score() > 0):
+    def choose_ride(self,step,rides,bonus,sim_params):
+        f = lambda r: self.get_score(r, step, bonus, sim_params)
+        ret = max(rides, key=f) 
+        if self.get_score(ret,step,bonus,sim_params) > 0:
             self.rides.append(ret)
-            waiting_time = max(0,ret.start - (step + dist(self.target,ret.start) ))
-            self.remaining_steps = dist(self.target,ret.start) + waiting_time + dist(ret.start, ret.end)
+            
+            waiting_time = max(
+                0,
+                ret.t_start - (step + dist(self.target,ret.start))
+            )
+
+            self.remaining_steps = dist(self.target,ret.start) + waiting_time + dist(ret.start, ret.finish)
             self.target = ret.finish
 
             return ret
 
         return None
+
+
+    def output(self):
+        print('-- {} {}'.format(
+            len(self.rides),
+            ' '.join(
+                str(ride.ride_id) for ride in self.rides
+            )
+        ))
+
