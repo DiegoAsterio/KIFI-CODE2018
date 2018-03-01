@@ -14,7 +14,9 @@ def algorithm(problem):
                     rides[:lookahead],
                     bonus
                 )
-                rides.remove(ride)
+
+                if ride is not None:
+                    rides.remove(ride)
             
             car.tick()
 
