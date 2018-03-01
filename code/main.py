@@ -1,5 +1,5 @@
 
-from collections import namedtuple
+from data import Problem, Position, Ride
 
 Problem = namedtuple('Map', ['rows', 'cols', 'fleet', 'bonus', 'steps', 'rides'])
 Position = namedtuple('Position', ['row', 'col'])
