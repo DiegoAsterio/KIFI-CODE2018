@@ -9,15 +9,15 @@ class Car(object):
     def is_free(self):
         return not self.remainingSteps
     
-    def get_score(self, ride, current_time, bonus):
+    def get_score(self, ride, current_time, bonus, a, b, c, b):
         distance = dist(ride.start, self.target)
         waiting_time = max(ride.t_start - current_time, 0)
         duration = ride.t_finish - ride.t_start
         bonus = bonus * (waiting_time >= distance)
-        a = -1
-        b = -1
-        c = 1
-        d = 10
+        
+        if ride.t_finish < current_time + duration + distance:
+            return -float("inf")
+        
         return a * distance + b * waiting_time + c * duration + d * bonus
 
     def tick(self):
