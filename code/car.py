@@ -24,9 +24,9 @@ class Car(object):
         if self.remaining_steps:
             self.remaining_steps -= 1
 
-    def choose_ride(self,step,rides):
-        ret = max(rides, key=lambda r: r.get_score(ride,step) )
-        if (ret.get_score() > 0):
+    def choose_ride(self,step,rides,bonus,sim_params):
+        ret = max(rides, key=lambda r: r.get_score(ride,step,bonus,sim_params) ) 
+        if (ret.get_score(self,ride,step,bonus,sim_params) > 0):
             self.rides.append(ret)
             waiting_time = max(0,ret.start - (step + dist(self.target,ret.start) ))
             self.remaining_steps = dist(self.target,ret.start) + waiting_time + dist(ret.start, ret.end)
