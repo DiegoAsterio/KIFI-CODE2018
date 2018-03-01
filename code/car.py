@@ -41,7 +41,7 @@ class Car(object):
         print('{} {}'.format(
             len(self.rides),
             ' '.join(
-                str(ride.ride_id) for ride self.rides
+                str(ride.ride_id) for ride in self.rides
             )
-        )
+        ))
 

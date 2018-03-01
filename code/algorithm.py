@@ -1,6 +1,10 @@
+from car import Car
+
 LOOKAHEAD_RIDES = 3
 
-def algorithm(problem):
+
+
+def algorithm(problem, params):
     steps = problem.steps
     cars = [ Car() for _ in range(problem.fleet) ]
     rides = problem.rides
@@ -11,8 +15,10 @@ def algorithm(problem):
         for car in cars:
             if car.is_free():
                 ride = car.choose_ride(
+                    step,
                     rides[:lookahead],
-                    bonus
+                    bonus,
+                    params
                 )
 
                 if ride is not None:
