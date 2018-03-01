@@ -13,6 +13,12 @@ class Car(object):
         distance = dist(ride.start, self.target)
         waiting_time = max(ride.t_start - current_time, 0)
         duration = ride.t_finish - ride.t_start
+        bonus = bonus * (waiting_time >= distance)
+        a = -1
+        b = -1
+        c = 1
+        d = 10
+        return a * distance + b * waiting_time + c * duration + d * bonus
 
     def tick(self):
         if self.remainingSteps:
