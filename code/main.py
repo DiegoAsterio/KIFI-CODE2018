@@ -1,3 +1,4 @@
+
 from collections import namedtuple
 
 Problem = namedtuple('Map', ['rows', 'cols', 'fleet', 'bonus', 'steps', 'rides'])
