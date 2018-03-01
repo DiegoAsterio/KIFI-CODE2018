@@ -12,6 +12,7 @@ def algorithm(problem, params):
     bonus = problem.bonus
 
     for step in range(steps):
+        print(step)
         for car in cars:
             if car.is_free():
                 ride = car.choose_ride(

@@ -18,4 +18,4 @@ class SimulationParameters(object):
 
 
 def dist(pos1, pos2):
-    return abs(pos1.rows - pos2.rows) + abs(pos1.cols - pos2.cols)
+    return abs(pos1.row - pos2.row) + abs(pos1.col - pos2.col)
