@@ -1,4 +1,5 @@
 from data import Position, dist
+import sys
 
 
 class Car(object):
@@ -29,6 +30,7 @@ class Car(object):
         def ride_score(ride):
             return self.get_score(ride, step, bonus, sim_params)
 
+        #print(list(map(ride_score, rides)), file=sys.stderr)
         candidate = max(rides, key=ride_score)
 
         if self.get_score(candidate, step, bonus, sim_params) > -float('inf'):

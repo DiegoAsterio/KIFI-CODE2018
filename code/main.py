@@ -22,5 +22,4 @@ rides.sort(key=lambda ride: ride.t_start)
 
 problem = Problem(rows=R, cols=C, fleet=F, bonus=B, steps=T, rides=rides)
 sim_parameters = SimulationParameters(-1, -1, 1, 10)
-
 algorithm(problem, sim_parameters)
