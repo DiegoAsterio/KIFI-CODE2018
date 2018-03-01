@@ -6,3 +6,6 @@ class Car(object):
 
     def is_free(self):
         return not self.remainingSteps
+
+    def tick(self):
+        self.remainingSteps -= 1
