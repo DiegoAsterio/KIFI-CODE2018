@@ -13,7 +13,7 @@ class Car(object):
     def get_score(self, ride, current_time, bonus, sim_params):
         distance = dist(ride.start, self.target)
         waiting_time = max(ride.t_start - current_time, 0)
-        duration = ride.t_finish - ride.t_start
+        duration = dist(ride.start, ride.finish)
         bonus = bonus * (waiting_time >= distance)
 
         if ride.t_finish < current_time + duration + distance:
@@ -49,7 +49,7 @@ class Car(object):
 
 
     def output(self):
-        print('-- {} {}'.format(
+        print('{} {}'.format(
             len(self.rides),
             ' '.join(
                 str(ride.ride_id) for ride in self.rides

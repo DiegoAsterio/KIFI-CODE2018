@@ -11,9 +11,9 @@ def algorithm(problem, params):
     bonus = problem.bonus
 
     for step in range(steps):
-        print(step)
-        import pdb; pdb.set_trace()
         for car in cars:
+            if not rides:
+                break
             if car.is_free():
                 ride = car.choose_ride(
                     step,
@@ -26,6 +26,8 @@ def algorithm(problem, params):
                     rides.remove(ride)
             
             car.tick()
+        if not rides:
+            break
 
     for car in cars:
         car.output()
