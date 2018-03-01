@@ -1,7 +1,7 @@
 from data import Problem, Position, Ride, SimulationParameters
 from algorithm import algorithm
 
-content = open('../datasets/a_example.in')
+content = open('../datasets/d_metropolis.in')
 R, C, F, N, B, T = [ int(x) for x in content.readline().split() ]
 
 rides = []

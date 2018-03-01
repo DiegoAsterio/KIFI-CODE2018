@@ -1,4 +1,5 @@
 from car import Car
+import sys
 from random import randint
 
 LOOKAHEAD_RIDES = 3
@@ -11,10 +12,11 @@ def algorithm(problem, params):
     bonus = problem.bonus
 
     for step in range(steps):
+        print(step, file=sys.stderr)
         for car in cars:
             if not rides:
                 break
-            if car.is_free():
+            if car.is_free() and randint(1, 5) == 1:
                 ride = car.choose_ride(
                     step,
                     rides[:lookahead],
